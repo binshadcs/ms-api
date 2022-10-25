@@ -12,4 +12,22 @@ class Department(models.Model):
     hod_ph = models.IntegerField()
 
 
+class Freezing_time(models.Model):
+    before_t = models.TimeField()
+    after_t = models.TimeField()
+
+
+class Venue(models.Model):
+    place = models.CharField(max_length=100)
+    controller = models.CharField(max_length=100)
+    cont_ph = models.IntegerField()
+    cont_email = models.EmailField()
+    availability = models.DateTimeField(null=True, blank=True)
+
+
+class Time_set(models.Model):
+    preference = models.DateTimeField()
+    exclusion = models.DateTimeField()
+
+
 

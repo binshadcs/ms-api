@@ -5,7 +5,7 @@ from .serializers import DepartmentSerializer
 
 @api_view(['GET'])
 def getData(request):
-
+    #this function for getting data of department 
     dep = Department.objects.all()
     serializer = DepartmentSerializer(dep, many=True)
     return Response(serializer.data)
