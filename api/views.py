@@ -5,7 +5,6 @@ from .serializers import DepartmentSerializer,VenueSerializer,Time_setSerializer
 
 @api_view(['GET'])
 def overView(request):
-    #this function for getting data of department 
     data ={
         "test" : "name",
         "test1" : "check",
