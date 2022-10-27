@@ -71,8 +71,8 @@ def deleteDepartment(request, pk):
     val = Department.objects.get(id=pk)
     val.delete()
     return Response("deleted succeccfully")
-# department 
 
+#venue here
 @api_view(['GET'])
 def getVenue(request):
     venue = Venue.objects.all()
@@ -99,7 +99,7 @@ def deleteVenue(request, pk):
     val = Venue.objects.get(id=pk)
     val.delete()
     return Response("deleted succeccfully")
-
+#set time here
 @api_view(['GET'])
 def getTime_set(request):
     timeSet = Time_set.objects.all()
@@ -118,7 +118,7 @@ def deleteTime_set(request, pk):
     val = Time_set.objects.get(id=pk)
     val.delete()
     return Response("deleted succeccfully")
-
+#freezing time here
 @api_view(['GET'])
 def getFreezing_time(request):
     frTime = Freezing_time.objects.all()
@@ -141,6 +141,7 @@ def updateFreezing_time(request, pk):
     return Response(serializer.data)
 
 #.filter(user=self.request.user)
+#Work schedule here
 @api_view(['GET'])
 def getwork_schedule(request):
     wrk_s = work_schedule.objects.all()
