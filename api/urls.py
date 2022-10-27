@@ -3,12 +3,21 @@ from . import views
 
 urlpatterns = [
     path('',views.overView),
-    path('dep',views.getData),#getdata about geting department detiles from model
-    path('dep/add',views.addDepartment),
-    path('venue',views.getVenue),
-    path('venue/add',views.addVenue),
-    path('time_set',views.getTime_set),
-    path('time_set/add',views.addTime_set),
-    path('freezing_time',views.getFreezing_time),
-    path('freezing_time/add',views.addFreezing_time),
+    path('Dep',views.getData),#getdata about geting department detiles from model
+    path('addDep',views.addDepartment),
+    path('updateDep/<str:pk>/',views.updateDepartment),
+    path('deleteDep/<str:pk>/',views.deleteDepartment),
+
+    path('Venue',views.getVenue),
+    path('addVenue',views.addVenue),
+    path('deleteVenue/<str:pk>',views.deleteVenue),
+
+    path('Time_set',views.getTime_set),
+    path('addTime_set',views.addTime_set),
+    path('deleteTime_set/<str:pk>',views.deleteTime_set),
+
+
+    path('Freezing_time',views.getFreezing_time),
+    path('addFreezing_time',views.addFreezing_time),
+    path('updateFreez/<str:pk>/',views.updateFreezing_time),
 ]

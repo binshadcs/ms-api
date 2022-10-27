@@ -13,10 +13,9 @@ def overView(request):
     }
     
     return Response(data)
-
+#department detiles start here 
 @api_view(['GET'])
-def getData(request):
-    #this function for getting data of department 
+def getData(request): 
     dep = Department.objects.all()
     serializer = DepartmentSerializer(dep, many=True)
     return Response(serializer.data)
@@ -29,9 +28,23 @@ def addDepartment(request):
         serializer.save()
     return Response(serializer.data)
 
+@api_view(['POSt'])
+def updateDepartment(request, pk):
+    val = Department.objects.get(id=pk)
+    serializer = DepartmentSerializer(instance=val, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def deleteDepartment(request, pk):
+    val = Department.objects.get(id=pk)
+    val.delete()
+    return Response("deleted succeccfully")
+# department 
+
 @api_view(['GET'])
 def getVenue(request):
-    #this function for getting data of department 
     venue = Venue.objects.all()
     serializer = VenueSerializer(venue, many=True)
     return Response(serializer.data)
@@ -42,6 +55,11 @@ def addVenue(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+@api_view(['DELETE'])
+def deleteVenue(request, pk):
+    val = Venue.objects.get(id=pk)
+    val.delete()
+    return Response("deleted succeccfully")
 
 @api_view(['GET'])
 def getTime_set(request):
@@ -56,6 +74,12 @@ def addTime_set(request):
         serializer.save()
     return Response(serializer.data)
 
+@api_view(['DELETE'])
+def deleteTime_set(request, pk):
+    val = Time_set.objects.get(id=pk)
+    val.delete()
+    return Response("deleted succeccfully")
+
 @api_view(['GET'])
 def getFreezing_time(request):
     frTime = Freezing_time.objects.all()
@@ -65,6 +89,14 @@ def getFreezing_time(request):
 @api_view(['POSt'])
 def addFreezing_time(request):
     serializer = Freezing_timeSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['POSt'])
+def updateFreezing_time(request, pk):
+    val = Freezing_time.objects.get(id=pk)
+    serializer = Freezing_timeSerializer(instance=val, data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
