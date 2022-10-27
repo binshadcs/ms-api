@@ -67,6 +67,18 @@ class meeting(models.Model):
     (4, "4"),
     (5, "5")
     )
+    STATUS_CHOICES = (
+        ("pending", "pending"),
+        ("approved", "approved"),
+        ("rejected", "rejected")
+    )
+    REPEAT = (
+        ("never", "never"),
+        ("daily", "daily"),
+        ("weekly", "weekly"),
+        ("monthly", "monthly"),
+        ("yearly", "yearly")
+    )
     title = models.CharField(max_length=100)
     desc = models.TextField()
     start_td = models.DateTimeField()
@@ -75,6 +87,13 @@ class meeting(models.Model):
     vunue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     priority = models.PositiveSmallIntegerField(choices=PRIORITY)
     minutes = models.TextField()
+    chr_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default="pending")
+    dir_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default="pending")
+    conv_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default="pending")
+    repeat_st = models.CharField(max_length=50,choices=REPEAT,default="never")
+    report = models.CharField(max_length=100)
+
+    
 
 class Participants(models.Model):
     STATUS_CHOICES = (
