@@ -85,3 +85,4 @@ class Participants(models.Model):
     meeting_id = models.ForeignKey(meeting, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     responses = models.CharField(max_length=50,choices=STATUS_CHOICES,default="pending")
+    rej_msg = models.TextField()
