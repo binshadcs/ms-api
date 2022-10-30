@@ -35,5 +35,4 @@ urlpatterns = [
 
     path('participants/',views.getParticipants),
 
-
 ]

@@ -38,3 +38,4 @@ class ParticipantsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Participants
         fields = '__all__'
+

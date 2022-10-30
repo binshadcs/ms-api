@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from email.policy import default
 from pyexpat import model
 from statistics import mode
@@ -12,6 +13,8 @@ class Department(models.Model):
     hod = models.CharField(max_length=100)
     hod_email = models.EmailField()
     hod_ph = models.IntegerField()
+    def __str__(self):
+        return self.name
 
 
 class Freezing_time(models.Model):
@@ -25,6 +28,8 @@ class Venue(models.Model):
     cont_ph = models.IntegerField()
     cont_email = models.EmailField()
     availability = models.DateTimeField(null=True, blank=True)
+    def __str__(self):
+        return self.place
 
 
 class Time_set(models.Model):
@@ -40,7 +45,7 @@ class User(AbstractUser):
         CHAIRMAN = "CHAIRMAN" , 'Chairman'
         DIRECTOR = "DIRECTOR", 'Director'
     role = models.CharField(max_length=50, choices=Role.choices)
-    dep = models.ForeignKey(Department, on_delete=models.CASCADE)
+    dep = models.ForeignKey(Department, on_delete=models.SET_NULL, null = True, blank= True)
 
     def __str__(self):
         return self.username
@@ -58,6 +63,8 @@ class work_schedule(models.Model):
     start_td = models.DateTimeField()
     end_td = models.DateTimeField()
     admin_status = models.CharField(max_length=50,choices = STATUS_CHOICES,default="pending")
+    def __str__(self):
+        return self.title
 
 class meeting(models.Model):
     PRIORITY = (
@@ -83,6 +90,7 @@ class meeting(models.Model):
     desc = models.TextField()
     start_td = models.DateTimeField()
     end_td = models.DateTimeField()
+    coordinator = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, blank= True)
     agenda = models.TextField()
     vunue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     priority = models.PositiveSmallIntegerField(choices=PRIORITY)
@@ -92,6 +100,8 @@ class meeting(models.Model):
     conv_status = models.CharField(max_length=50,choices=STATUS_CHOICES,default="pending")
     repeat_st = models.CharField(max_length=50,choices=REPEAT,default="never")
     report = models.CharField(max_length=100)
+    def __str__(self):
+        return self.title
 
     
 
@@ -105,3 +115,4 @@ class Participants(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     responses = models.CharField(max_length=50,choices=STATUS_CHOICES,default="pending")
     rej_msg = models.TextField()
+

@@ -3,9 +3,6 @@ from rest_framework.decorators import api_view
 from base.models import *
 from .serializers import *
 
-#Department,Venue,Time_set,Freezing_time,work_schedule
-#DepartmentSerializer,VenueSerializer,Time_setSerializer,Freezing_timeSerializer,work_scheduleSerializer
-
 @api_view(['GET'])
 def overView(request):
     data ={
@@ -99,6 +96,7 @@ def deleteVenue(request, pk):
     val = Venue.objects.get(id=pk)
     val.delete()
     return Response("deleted succeccfully")
+    
 #set time here
 @api_view(['GET'])
 def getTime_set(request):
