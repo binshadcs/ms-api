@@ -24,7 +24,11 @@ class CustomLoginView(LoginView):
 
 @login_required
 def users(request):
-    return render(request, 'base/admin.html')
+    users = User.objects.all()
+
+    context = {'users':users}
+
+    return render(request, 'base/admin.html',context)
 
 
 def settings(request):
